@@ -3,52 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Tracker App</title>
+    <title>Task Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Task Tracker</h1>
-        <div class="task-form">
-            <input type="text" id="taskName" placeholder="Task Description" required>
-            <input type="date" id="dateReceived" required>
-            <input type="date" id="deadline" required>
-            <select id="status">
-                <option value="Pending">Pending</option>
-                <option value="Performed">Performed</option>
-                <option value="Submitted">Submitted</option>
-            </select>
-            <button id="addTaskBtn">Add Task</button>
-        </div>
 
-        <h2>Task List</h2>
-        <table id="taskTable">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-screen">
+        <h1>Welcome to Task Tracker</h1>
+        <p>Manage your tasks efficiently!</p>
+        <button id="start-btn">Get Started</button>
+    </div>
+
+    <!-- Task Input Section (initially hidden) -->
+    <div id="task-section" class="hidden">
+        <h2>Track Your Tasks</h2>
+        <form id="task-form">
+            <input type="text" id="client-name" placeholder="Client Name" required>
+            <input type="text" id="research-title" placeholder="Research Title" required>
+            <input type="date" id="date-received" required>
+            <input type="date" id="date-submitted">
+            <select id="status">
+                <option value="pending">Pending</option>
+                <option value="submitted">Submitted</option>
+                <option value="completed">Completed</option>
+            </select>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <!-- Task List -->
+        <table>
             <thead>
                 <tr>
-                    <th>Task</th>
+                    <th>#</th>
+                    <th>Client Name</th>
+                    <th>Research Title</th>
                     <th>Date Received</th>
-                    <th>Deadline</th>
+                    <th>Date Submitted</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Tasks will be dynamically inserted here -->
-            </tbody>
+            <tbody id="task-list"></tbody>
         </table>
     </div>
 
     <script src="script.js"></script>
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }
-</script>
 </body>
 </html>

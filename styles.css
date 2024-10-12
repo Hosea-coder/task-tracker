@@ -1,43 +1,28 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 50px;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+/* Welcome screen */
+.welcome-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
     text-align: center;
 }
 
-.task-form {
+.hidden {
+    display: none;
+}
+
+/* Task section styling */
+#task-section {
+    margin: 20px;
+}
+
+form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 20px;
-}
-
-.task-form input, .task-form select, .task-form button {
-    padding: 10px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #5cb85c;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #4cae4c;
 }
 
 table {
@@ -45,16 +30,24 @@ table {
     border-collapse: collapse;
 }
 
-table th, table td {
+table, th, td {
+    border: 1px solid black;
     padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
 }
 
-button.delete-btn {
-    background-color: #d9534f;
+/* Status color coding */
+.status-submitted {
+    background-color: #28a745;
+    color: white;
 }
 
-button.delete-btn:hover {
-    background-color: #c9302c;
+.status-pending {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-completed {
+    background: linear-gradient(45deg, green, yellow);
+    color: white;
 }

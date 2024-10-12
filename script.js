@@ -1,83 +1,48 @@
-// Selectors
-const taskName = document.getElementById("taskName");
-const dateReceived = document.getElementById("dateReceived");
-const deadline = document.getElementById("deadline");
-const status = document.getElementById("status");
-const addTaskBtn = document.getElementById("addTaskBtn");
-const taskTable = document.getElementById("taskTable").getElementsByTagName('tbody')[0];
+// Welcome screen logic
+document.getElementById('start-btn').addEventListener('click', function() {
+    // Hide the welcome screen
+    document.getElementById('welcome-screen').style.display = 'none';
 
-// Event Listener to Add Task
-addTaskBtn.addEventListener('click', addTask);
+    // Show the task section
+    document.getElementById('task-section').style.display = 'block';
+});
 
-// Function to Add Task
-function addTask() {
-    const task = {
-        taskName: taskName.value,
-        dateReceived: dateReceived.value,
-        deadline: deadline.value,
-        status: status.value
-    };
+// Task management logic
+let taskCounter = 1;
+document.getElementById('task-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    let tasks = getTasksFromLocalStorage();
-    tasks.push(task);
-    saveTasksToLocalStorage(tasks);
-    renderTasks();
-    clearForm();
+    // Get form values
+    const clientName = document.getElementById('client-name').value;
+    const researchTitle = document.getElementById('research-title').value;
+    const dateReceived = document.getElementById('date-received').value;
+    const dateSubmitted = document.getElementById('date-submitted').value;
+    const status = document.getElementById('status').value;
+
+    // Create a new row
+    const taskList = document.getElementById('task-list');
+    const newRow = document.createElement('tr');
+
+    // Add cells to the row
+    newRow.innerHTML = `
+        <td>${taskCounter++}</td>
+        <td>${clientName}</td>
+        <td>${researchTitle}</td>
+        <td>${dateReceived}</td>
+        <td>${dateSubmitted ? dateSubmitted : 'Not Submitted'}</td>
+        <td class="${getStatusClass(status)}">${status.charAt(0).toUpperCase() + status.slice(1)}</td>
+    `;
+
+    // Append the row to the task list
+    taskList.appendChild(newRow);
+
+    // Reset the form
+    document.getElementById('task-form').reset();
+});
+
+// Function to return status class based on status
+function getStatusClass(status) {
+    if (status === 'submitted') return 'status-submitted';
+    if (status === 'pending') return 'status-pending';
+    if (status === 'completed') return 'status-completed';
 }
-
-// Function to Render Tasks in the Table
-function renderTasks() {
-    let tasks = getTasksFromLocalStorage();
-    taskTable.innerHTML = ""; // Clear existing tasks
-
-    tasks.forEach((task, index) => {
-        let row = taskTable.insertRow();
-
-        let taskCell = row.insertCell(0);
-        let dateReceivedCell = row.insertCell(1);
-        let deadlineCell = row.insertCell(2);
-        let statusCell = row.insertCell(3);
-        let actionCell = row.insertCell(4);
-
-        taskCell.innerText = task.taskName;
-        dateReceivedCell.innerText = task.dateReceived;
-        deadlineCell.innerText = task.deadline;
-        statusCell.innerText = task.status;
-
-        // Delete button
-        let deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.innerText = 'Delete';
-        deleteBtn.addEventListener('click', () => deleteTask(index));
-        actionCell.appendChild(deleteBtn);
-    });
-}
-
-// Function to Delete Task
-function deleteTask(index) {
-    let tasks = getTasksFromLocalStorage();
-    tasks.splice(index, 1); // Remove the selected task
-    saveTasksToLocalStorage(tasks);
-    renderTasks();
-}
-
-// Utility Functions for Local Storage
-function getTasksFromLocalStorage() {
-    let tasks = localStorage.getItem('tasks');
-    return tasks ? JSON.parse(tasks) : [];
-}
-
-function saveTasksToLocalStorage(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-// Function to Clear Form
-function clearForm() {
-    taskName.value = '';
-    dateReceived.value = '';
-    deadline.value = '';
-    status.value = 'Pending';
-}
-
-// Initial Render of Tasks
-renderTasks();
