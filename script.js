@@ -1,11 +1,11 @@
 // Welcome screen logic
-document.getElementById('start-btn').addEventListener('click', function() {
-    // Hide the welcome screen
-    document.getElementById('welcome-screen').style.display = 'none';
+const welcomeScreen = document.getElementById('welcome-screen');
 
-    // Show the task section
-    document.getElementById('task-section').style.display = 'block';
-});
+// Automatically transition to the task section after the welcome screen animations
+setTimeout(function() {
+    welcomeScreen.style.display = 'none'; // Hide the welcome screen
+    document.getElementById('task-section').style.display = 'block'; // Show task section
+}, 5000); // 5 seconds delay (animation time)
 
 // Task management logic
 let taskCounter = 1;

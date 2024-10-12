@@ -1,14 +1,54 @@
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
 /* Welcome screen */
 .welcome-screen {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    text-align: center;
+    background-image: url('my-picture.jpg'); /* Use your image here */
+    background-size: cover;
+    background-position: center;
 }
 
+/* Text Styling */
+#welcome-text {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 5vw; /* Large font scaling with screen size */
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Individual letter animation */
+.animate {
+    opacity: 0;
+    animation: enter 1s forwards, exit 1s 4s forwards; /* Enter and exit animation */
+}
+
+.from-left { animation-delay: 0.2s; }
+.from-right { animation-delay: 0.4s; }
+.from-top { animation-delay: 0.6s; }
+.from-bottom { animation-delay: 0.8s; }
+
+/* Keyframes for entrance and exit animations */
+@keyframes enter {
+    0% { opacity: 0; transform: translateX(-100%); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes exit {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* Hide task section initially */
 .hidden {
     display: none;
 }
@@ -50,4 +90,18 @@ table, th, td {
 .status-completed {
     background: linear-gradient(45deg, green, yellow);
     color: white;
+}
+
+/* Mobile and Tablet responsiveness */
+@media (max-width: 768px) {
+    #welcome-text {
+        font-size: 10vw; /* Larger text on smaller screens */
+    }
+}
+
+/* PC responsiveness */
+@media (min-width: 769px) {
+    #welcome-text {
+        font-size: 7vw; /* Adjust font size for bigger screens */
+    }
 }
