@@ -44,7 +44,7 @@
             <button class="tab-button" onclick="openTab('view-info')">View Information</button>
         </div>
 
-        <!-- Tab Content -->
+        <!-- Tab Content for Fill Information -->
         <div id="fill-info" class="tab-content active">
             <h2>Track Your Tasks</h2>
             <form id="task-form">
@@ -60,7 +60,7 @@
                 <button type="submit">Add Task</button>
             </form>
 
-            <!-- Task List -->
+            <!-- Task List for Filled Information -->
             <table>
                 <thead>
                     <tr>
@@ -76,9 +76,12 @@
             </table>
         </div>
 
+        <!-- Tab Content for View Information -->
         <div id="view-info" class="tab-content">
             <h2>View Your Tasks</h2>
-            <div id="task-list-view"></div>
+            <div id="task-list-view">
+                <!-- This will be populated with filled information -->
+            </div>
         </div>
     </div>
 
