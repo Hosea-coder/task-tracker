@@ -12,9 +12,7 @@ body, html {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('my-picture.jpg'); /* Use your image here */
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(to right, #1e90ff, #ff4500); /* Oceanic blue to orange */
 }
 
 /* Text Styling */
@@ -48,12 +46,41 @@ body, html {
     100% { opacity: 0; transform: translateX(100%); }
 }
 
-/* Hide task section initially */
+/* Hide main application initially */
 .hidden {
     display: none;
 }
 
-/* Task section styling */
+/* Tab container styling */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.tab-button.active {
+    background-color: #0056b3;
+}
+
+/* Tab content styling */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
 #task-section {
     margin: 20px;
 }
